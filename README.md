@@ -4,4 +4,4 @@ This is the code used for investigating the Enron email dataset through machine 
 
 [Blog available on Medium](https://medium.com/@anthonydm/how-i-used-machine-learning-to-classify-emails-and-turn-them-into-insights-efed37c1e66) 
 
-@anthdm on Twitter
+[@anthdm](https://twitter.com/anthdm) on Twitter
