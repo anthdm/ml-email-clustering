@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.pipeline import make_pipeline
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans, MiniBatchKMeans
@@ -32,7 +32,8 @@ email_df.drop(email_df.query("body == '' | to == '' | from_ == ''").index, inpla
 # Some note on min_df and max_df
 # max_df=0.5 means "ignore all terms that appear in more then 50% of the documents"
 # min_df=2 means "ignore all terms that appear in less then 2 documents"
-vect = TfidfVectorizer(analyzer='word', stop_words='english', max_df=0.3, min_df=2)
+stopwords = ENGLISH_STOP_WORDS.union(['ect', 'hou', 'com', 'recipient'])
+vect = TfidfVectorizer(analyzer='word', stop_words=stopwords, max_df=0.3, min_df=2)
 
 X = vect.fit_transform(email_df.body)
 features = vect.get_feature_names()
@@ -68,12 +69,12 @@ label_colors = ["#2AB0E9", "#2BAF74", "#D7665E", "#CCCCCC",
                 "#D2CA0D", "#522A64", "#A3DB05", "#FC6514"]
 colors = [label_colors[i] for i in labels]
 
-plt.scatter(coords[:, 0], coords[:, 1], c=colors)
+#plt.scatter(coords[:, 0], coords[:, 1], c=colors)
 # Plot the cluster centers
 centroids = clf.cluster_centers_
 centroid_coords = pca.transform(centroids)
-plt.scatter(centroid_coords[:, 0], centroid_coords[:, 1], marker='X', s=200, linewidths=2, c='#444d60')
-plt.show()
+# plt.scatter(centroid_coords[:, 0], centroid_coords[:, 1], marker='X', s=200, linewidths=2, c='#444d60')
+# plt.show()
 
-# Use this to print the top terms per cluster with matplotlib.
-# plot_tfidf_classfeats_h(top_feats_per_cluster(X, labels, features, 0.1, 25))
+#Use this to print the top terms per cluster with matplotlib.
+plot_tfidf_classfeats_h(top_feats_per_cluster(X, labels, features, 0.1, 25))
