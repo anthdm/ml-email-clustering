@@ -1,3 +1,5 @@
+# Code used in part 1 of How I used machine learning to classify emails and turn them into insights.
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
