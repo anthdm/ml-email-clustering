@@ -1,0 +1,3 @@
+//this file will help developers to know the dependencies and tools required to deploy the application
+1.Language : Python
+2.IDE : Visual Studio code or any other text editor or ide of your choice
